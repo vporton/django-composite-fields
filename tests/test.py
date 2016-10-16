@@ -19,4 +19,9 @@ class BaseUserGroupTestCase(TestCase):
         self.assertEqual(self.model.composite1_field1, 3)
         self.assertEqual(self.model.composite1_field2, 4)
 
+        self.model.composite1.object = '5/6'
+        self.assertEqual(self.model.composite1.field1, 5)
+        self.assertEqual(self.model.composite1.field2, 6)
+        self.assertEqual(self.model.composite1.object, '5/6')
+
         self.model.save()

@@ -20,13 +20,29 @@ class CompositeField:
     def __getattribute__(self, item):
         if item in super().__getattribute__('fields'):
             return getattr(self.owner, self.name+'_'+item)
+        if item == 'hash':
+            return { f: getattr(self, f) for f in super().__getattribute__('fields') }
+        if item == 'object':
+            hash = self.hash
+            return self.value_from_dict(hash)  # TODO: Shorten the code
         return super().__getattribute__(item)
 
     def __setattr__(self, key, value):
         if self.initialized:  # not to be called in the constructor
+            if key == 'hash':
+                for key2, value2 in value.items():
+                    setattr(self, key2, value2)
+            if key == 'object':
+                self.hash = self.value_to_dict(value)
             if key in self.fields:
                 return setattr(self.owner, self.name + '_' + key, value)
         super().__setattr__(key, value)
+
+    def value_from_dict(self, dict):
+        return dict
+
+    def value_to_dict(self, value):
+        return value
 
 
 # Internal
