@@ -1,1 +1,5 @@
 Add support for widgets and forms based on composite attributes.
+
+https://github.com/django/deps/blob/master/draft/0191-composite-fields.rst
+
+https://groups.google.com/forum/#!msg/django-developers/MZUcOE6-7GY/Nb9_13eY2IIJ
