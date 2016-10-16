@@ -19,7 +19,7 @@ class BaseUserGroupTestCase(TestCase):
     def test_fields(self):
         self.model.composite1.field1 = 1
         self.model.composite1.field2 = 2
-        self.assertEqual(self.model.composite1.field1, 1)
+        self.assertEqual(self.model.composite1.field1, 1)  # FIXME: It does not user __getattr__ but instead static attribute
         self.assertEqual(self.model.composite1.field2, 2)
         self.assertEqual(self.model.composite1_field1, 1)
         self.assertEqual(self.model.composite1_field2, 2)
