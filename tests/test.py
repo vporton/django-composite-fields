@@ -29,3 +29,5 @@ class BaseUserGroupTestCase(TestCase):
         self.assertEqual(self.model.composite1.field2, 4)
         self.assertEqual(self.model.composite1_field1, 3)
         self.assertEqual(self.model.composite1_field2, 4)
+
+        self.model.save()
