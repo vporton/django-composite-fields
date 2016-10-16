@@ -1,12 +1,31 @@
 from django.test import TestCase
-from django.db import models
 from composite_fields.composite_fields import *
-import tests.models
+
+
+class MyCompositeField(CompositeField):
+    field1 = models.fields.IntegerField()
+    field2 = models.fields.IntegerField()
+
+
+class MyModel(ModelWithCompositeFields):
+    composite1 = MyCompositeField(name='composite1')
+    composite2 = MyCompositeField(name='composite2')
+
 
 class BaseUserGroupTestCase(TestCase):
     def setUp(self):
-        pass
-        # self.model = MyModel()
+        self.model = MyModel()
 
     def test_fields(self):
-        pass
+        self.model.composite1.field1 = 1
+        self.model.composite1.field2 = 2
+        self.assertEqual(self.model.composite1.field1, 1)
+        self.assertEqual(self.model.composite1.field2, 2)
+        self.assertEqual(self.model.composite1_field1, 1)
+        self.assertEqual(self.model.composite1_field2, 2)
+        self.model.composite1_field1 = 3
+        self.model.composite1_field2 = 4
+        self.assertEqual(self.model.composite1.field1, 3)
+        self.assertEqual(self.model.composite1.field2, 4)
+        self.assertEqual(self.model.composite1_field1, 3)
+        self.assertEqual(self.model.composite1_field2, 4)
