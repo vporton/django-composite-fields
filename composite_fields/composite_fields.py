@@ -40,6 +40,9 @@ def my_filter2(field_and_value):
 
 
 class ModelWithCompositeFields(models.Model):
+    class Meta:
+        abstract = True
+
     def __init__(self):
         # dir(type(self)) instead of type(self).__dict__  # also fields from base classes
         composite_fields = filter(my_filter, type(self).__dict__.items())
