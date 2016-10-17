@@ -22,7 +22,7 @@ setup(
     long_description='Fields consisting of several subfields',
 
     # The project's main homepage.
-    url='https://bitbucket.org/portonv/composite-fields',
+    url='https://github.com/vporton/django-composite-fields',
 
     # Author details
     author='Victor Porton',
